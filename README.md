@@ -14,18 +14,15 @@
 - [微信公众平台](https://mp.weixin.qq.com/)
 
 ### 微信开发者工具
-微信开发者工具是微信官方提供的小程序开发与调试 IDE，功能类似于 Visual Studio Code。我们通常用它来预览、调试和发布小程序。  
-- 下载地址：https://developers.weixin.qq.com/miniprogram/dev/devtools/download.html
+微信开发者工具（[下载地址](https://developers.weixin.qq.com/miniprogram/dev/devtools/download.html)）是微信官方提供的小程序开发与调试 IDE，功能类似于 Visual Studio Code。我们通常用它来预览、调试和发布小程序。  
 
-虽然开发过程中可以使用自己喜欢的编辑器（如 Visual Studio Code）进行编码，但小程序最终必须在微信开发者工具中进行校验和预览，并通过该工具
+虽然开发过程中可以使用自己喜欢的编辑器（如 Visual Studio Code）进行编码，但小程序最终必须在微信开发者工具中进行校验和预览，并通过该工具上传发布。
 
 ## 跨端开发框架 Taro
 
-Taro(https://docs.taro.zone/docs/) 是一个开放式跨端跨框架解决方案，支持使用 React/Vue/Nerv 等框架来开发 微信 / 京东 / 百度 / 支付宝 / 字节跳动 / QQ / 飞书 / 快手 小程序 / H5 / RN 等应用。
+Taro([官方地址](https://docs.taro.zone/docs/)) 是一个开放式跨端跨框架解决方案，支持使用 React/Vue/Nerv 等框架来开发 微信 / 京东 / 百度 / 支付宝 / 字节跳动 / QQ / 飞书 / 快手 小程序 / H5 / RN 等应用。
 
 ### 安装环境准备
-
-- https://docs.taro.zone/docs/GETTING-STARTED
 
 简要命令如下：
 
@@ -45,6 +42,8 @@ added 479 packages in 45s
 
 
 ```
+可以参照官方的[快速上手](https://docs.taro.zone/docs/GETTING-STARTED)
+
 
 ### 初始化项目
 
@@ -89,15 +88,12 @@ Need help? Go and open issue: https://tls.jd.com/taro-issue-helper
 3. 在调用工具函数前，先制定计划并说明步骤和结论，不要仅依赖工具输出，需综合推理后再给出答案。
 
 ### UI组件
-Nutui 和 Taro 一样，同属京东出品。
-
-- https://nutui.jd.com/taro/react/3x/
+NutUI([预览地址](https://nutui.jd.com/taro/react/3x/)) 和 Taro 一样，同属京东出品。
 
 
 ### 微信开放社区
-微信开放社区是官方提供的问题交流处，基本上常见的问题，都能在微信开放社区搜到到。
-- https://developers.weixin.qq.com/community/develop/mixflow
+微信开放社区([地址](https://developers.weixin.qq.com/community/develop/mixflow
+))是官方提供的问题交流处，基本上常见的问题，都能在微信开放社区搜索到。
 
 ### 性能优化指南
-
-- https://developers.weixin.qq.com/community/develop/doc/00040e5a0846706e893dcc24256009
+微信官方提供了常见的[性能优化指南](https://developers.weixin.qq.com/community/develop/doc/00040e5a0846706e893dcc24256009)。
