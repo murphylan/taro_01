@@ -1,0 +1,53 @@
+.custom-tabbar {
+  position: fixed !important;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  background: #fff;
+  border-top: 1px solid #eee;
+  
+  .nut-tabbar {
+    background: #fff;
+  }
+  
+  .nut-tabbar-item {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 8px 4px;
+    min-height: 50px;
+    
+    &__icon {
+      font-size: 24px;
+      margin-bottom: 2px;
+      line-height: 1;
+    }
+    
+    &__title {
+      font-size: 12px;
+      color: #666;
+      line-height: 1.2;
+    }
+    
+    &--active {
+      .nut-tabbar-item__title {
+        color: #0081ff;
+      }
+      .nut-tabbar-item__icon {
+        color: #0081ff;
+      }
+    }
+  }
+  
+  // 确保图标字体正确加载
+  .nutui-icon {
+    font-family: 'nutui-iconfont' !important;
+    font-size: 24px;
+    font-style: normal;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+}

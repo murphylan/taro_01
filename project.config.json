@@ -1,0 +1,30 @@
+{
+	"miniprogramRoot": "dist/",
+	"projectname": "qun_02",
+	"description": "qun event",
+	"appid": "wx77235e3c96de1514",
+	"setting": {
+		"urlCheck": true,
+		"es6": false,
+    "enhance": false,
+    "compileHotReLoad": false,
+		"postcss": false,
+		"preloadBackgroundData": false,
+		"minified": true,
+		"newFeature": true,
+		"autoAudits": false,
+		"coverView": true,
+		"showShadowRootInWxmlPanel": false,
+		"scopeDataCheck": false,
+		"useCompilerModule": true,
+		"useIsolateContext": true,
+		"userConfirmedBundleSwitch": false,
+		"packNpmManually": false,
+		"packNpmRelationList": [],
+		"minifyWXSS": true
+	},
+	"compileType": "miniprogram",
+	"simulatorType": "wechat",
+	"simulatorPluginLibVersion": {},
+	"condition": {}
+}
