@@ -1,0 +1,506 @@
+.calendar-container {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #e8f5e8 0%, #f0fdf4 50%, #ecfccb 100%);
+  padding-bottom: 80px;
+  position: relative;
+  overflow-x: hidden;
+}
+
+/* 顶部装饰背景 - 继承index页面样式 */
+.top-decoration {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 200px;
+  overflow: hidden;
+  z-index: 0;
+
+  .wave-bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 100px;
+    background: linear-gradient(135deg, #3b82f6, #2563eb);
+    clip-path: polygon(0 0, 100% 0, 100% 70%, 0 100%);
+  }
+
+  .floating-elements {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+
+    .floating-dot {
+      position: absolute;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.2);
+      animation: float 6s ease-in-out infinite;
+
+      &.dot-1 {
+        width: 20px;
+        height: 20px;
+        top: 30px;
+        left: 20%;
+        animation-delay: 0s;
+      }
+
+      &.dot-2 {
+        width: 15px;
+        height: 15px;
+        top: 60px;
+        right: 25%;
+        animation-delay: 2s;
+      }
+
+      &.dot-3 {
+        width: 12px;
+        height: 12px;
+        top: 90px;
+        left: 70%;
+        animation-delay: 4s;
+      }
+    }
+  }
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0px) rotate(0deg); }
+  25% { transform: translateY(-10px) rotate(5deg); }
+  50% { transform: translateY(-5px) rotate(-3deg); }
+  75% { transform: translateY(-15px) rotate(3deg); }
+}
+
+/* 内容区域 */
+.content-wrapper {
+  position: relative;
+  z-index: 1;
+  padding: 120px 16px 0;
+}
+
+/* 通用section样式 */
+.section {
+  margin-bottom: 32px;
+  
+  .section-header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 16px;
+    padding: 0 8px;
+    position: relative;
+
+    .header-icon {
+      font-size: 24px;
+      margin-right: 12px;
+      background: linear-gradient(135deg, #3b82f6, #2563eb);
+      background-clip: text;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .header-content {
+      flex: 1;
+
+      .section-title {
+        font-size: 20px;
+        font-weight: 700;
+        color: #1f2937;
+        display: block;
+      }
+
+      .section-subtitle {
+        font-size: 14px;
+        color: #6b7280;
+        margin-top: 2px;
+        display: block;
+      }
+    }
+
+    .today-badge {
+      background: linear-gradient(135deg, #3b82f6, #2563eb);
+      color: white;
+      font-size: 12px;
+      font-weight: 600;
+      padding: 4px 8px;
+      border-radius: 12px;
+      animation: pulse 2s infinite;
+    }
+  }
+}
+
+@keyframes pulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+}
+
+/* 日历主体样式 */
+.calendar-main-section {
+  .calendar-widget {
+    background: white;
+    border-radius: 20px;
+    padding: 20px;
+    box-shadow: 0 10px 40px rgba(59, 130, 246, 0.15);
+    border: 1px solid rgba(59, 130, 246, 0.1);
+  }
+
+  .week-header {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 8px;
+    margin-bottom: 16px;
+    padding-bottom: 12px;
+    border-bottom: 2px solid #f3f4f6;
+
+    .week-day {
+      text-align: center;
+
+      .week-day-text {
+        font-size: 14px;
+        font-weight: 600;
+        color: #6b7280;
+      }
+    }
+  }
+
+  .calendar-grid {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 8px;
+  }
+
+  .calendar-day {
+    aspect-ratio: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    padding: 8px 4px;
+    border-radius: 12px;
+    position: relative;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    border: 2px solid transparent;
+
+    &.empty {
+      pointer-events: none;
+    }
+
+    &.today {
+      background: linear-gradient(135deg, #3b82f6, #2563eb);
+      color: white;
+      box-shadow: 0 4px 12px rgba(59, 130, 246, 0.4);
+
+      .day-number {
+        color: white;
+        font-weight: 700;
+      }
+    }
+
+    &.selected {
+      border-color: #3b82f6;
+      background: rgba(59, 130, 246, 0.1);
+      transform: scale(1.05);
+    }
+
+    &:hover:not(.empty):not(.today) {
+      background: #f8fafc;
+      border-color: #e2e8f0;
+    }
+
+    .day-number {
+      font-size: 16px;
+      font-weight: 600;
+      color: #1f2937;
+      margin-bottom: 4px;
+    }
+
+    .event-indicators {
+      display: flex;
+      gap: 2px;
+      align-items: center;
+      flex-wrap: wrap;
+      justify-content: center;
+
+      .event-dot {
+        width: 6px;
+        height: 6px;
+        border-radius: 50%;
+        flex-shrink: 0;
+      }
+
+      .more-events {
+        font-size: 10px;
+        color: #6b7280;
+        font-weight: 600;
+      }
+    }
+  }
+}
+
+/* 今日事件样式 */
+.today-events-section {
+  .events-list {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .event-item {
+    background: white;
+    border-radius: 16px;
+    padding: 16px;
+    display: flex;
+    align-items: center;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+    border: 1px solid rgba(0, 0, 0, 0.06);
+    position: relative;
+    overflow: hidden;
+    transition: all 0.3s ease;
+
+    &:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+    }
+
+    .event-indicator {
+      display: flex;
+      align-items: center;
+      margin-right: 16px;
+      position: relative;
+
+      .event-color-bar {
+        width: 4px;
+        height: 50px;
+        border-radius: 2px;
+        margin-right: 12px;
+      }
+
+      .event-icon {
+        font-size: 24px;
+      }
+    }
+
+    .event-content {
+      flex: 1;
+
+      .event-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 8px;
+
+        .event-title {
+          font-size: 16px;
+          font-weight: 600;
+          color: #1f2937;
+        }
+
+        .event-time {
+          font-size: 14px;
+          color: #6b7280;
+          font-weight: 500;
+        }
+      }
+
+      .event-type-label {
+        font-size: 12px;
+        color: #9ca3af;
+        font-weight: 500;
+      }
+    }
+  }
+
+  .no-events {
+    background: white;
+    border-radius: 16px;
+    padding: 32px;
+    text-align: center;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+
+    .no-events-icon {
+      font-size: 48px;
+      margin-bottom: 16px;
+    }
+
+    .no-events-text {
+      font-size: 18px;
+      font-weight: 600;
+      color: #6b7280;
+      margin-bottom: 8px;
+      display: block;
+    }
+
+    .no-events-subtitle {
+      font-size: 14px;
+      color: #9ca3af;
+    }
+  }
+}
+
+/* 事件类型图例样式 */
+.legend-section {
+  .legend-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+
+  .legend-item {
+    background: white;
+    border-radius: 12px;
+    padding: 12px 16px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+    border: 1px solid rgba(0, 0, 0, 0.06);
+    flex: 1;
+    min-width: 120px;
+
+    .legend-color {
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      flex-shrink: 0;
+    }
+
+    .legend-icon {
+      font-size: 16px;
+    }
+
+    .legend-label {
+      font-size: 14px;
+      font-weight: 500;
+      color: #374151;
+    }
+  }
+}
+
+/* 不同事件类型的特殊样式 */
+.event-meeting {
+  &::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 40px;
+    height: 100%;
+    background: linear-gradient(135deg, rgba(59, 130, 246, 0.1), rgba(59, 130, 246, 0.05));
+    clip-path: polygon(40% 0%, 100% 0, 100% 100%, 0% 100%);
+  }
+}
+
+.event-work {
+  &::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 40px;
+    height: 100%;
+    background: linear-gradient(135deg, rgba(34, 197, 94, 0.1), rgba(34, 197, 94, 0.05));
+    clip-path: polygon(40% 0%, 100% 0, 100% 100%, 0% 100%);
+  }
+}
+
+.event-activity {
+  &::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 40px;
+    height: 100%;
+    background: linear-gradient(135deg, rgba(245, 158, 11, 0.1), rgba(245, 158, 11, 0.05));
+    clip-path: polygon(40% 0%, 100% 0, 100% 100%, 0% 100%);
+  }
+}
+
+.event-social {
+  &::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 40px;
+    height: 100%;
+    background: linear-gradient(135deg, rgba(239, 68, 68, 0.1), rgba(239, 68, 68, 0.05));
+    clip-path: polygon(40% 0%, 100% 0, 100% 100%, 0% 100%);
+  }
+}
+
+.event-training {
+  &::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 40px;
+    height: 100%;
+    background: linear-gradient(135deg, rgba(139, 92, 246, 0.1), rgba(139, 92, 246, 0.05));
+    clip-path: polygon(40% 0%, 100% 0, 100% 100%, 0% 100%);
+  }
+}
+
+/* 响应式设计 */
+@media (max-width: 375px) {
+  .content-wrapper {
+    padding-left: 12px;
+    padding-right: 12px;
+  }
+  
+  .calendar-widget {
+    padding: 16px;
+  }
+
+  .calendar-day {
+    padding: 6px 2px;
+
+    .day-number {
+      font-size: 14px;
+    }
+
+    .event-dot {
+      width: 4px;
+      height: 4px;
+    }
+  }
+  
+  .event-item {
+    padding: 14px;
+  }
+  
+  .legend-item {
+    min-width: 100px;
+    padding: 10px 12px;
+  }
+}
+
+/* 日历动画效果 */
+.calendar-day {
+  animation: fadeInUp 0.3s ease-out;
+  animation-fill-mode: both;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* 为每个日历日期添加递增的动画延迟 */
+.calendar-day:nth-child(1) { animation-delay: 0.02s; }
+.calendar-day:nth-child(2) { animation-delay: 0.04s; }
+.calendar-day:nth-child(3) { animation-delay: 0.06s; }
+.calendar-day:nth-child(4) { animation-delay: 0.08s; }
+.calendar-day:nth-child(5) { animation-delay: 0.10s; }
+.calendar-day:nth-child(6) { animation-delay: 0.12s; }
+.calendar-day:nth-child(7) { animation-delay: 0.14s; }
+.calendar-day:nth-child(8) { animation-delay: 0.16s; }
+.calendar-day:nth-child(9) { animation-delay: 0.18s; }
+.calendar-day:nth-child(10) { animation-delay: 0.20s; }
