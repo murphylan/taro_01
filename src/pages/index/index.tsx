@@ -1,11 +1,8 @@
-import { Button, Dialog, Cell, CellGroup } from "@nutui/nutui-react-taro";
 import { View, Text } from "@tarojs/components";
-import { useState } from "react";
 import CustomTabbar from "../../components/CustomTabbar";
 import "./index.scss";
 
 function Index() {
-  const [visible, setVisible] = useState(false);
 
   // Mock数据
   const hotNews = [
@@ -111,7 +108,7 @@ function Index() {
               </View>
             </View>
             <View className="timeline-container">
-              {pinnedMessages.map((item, index) => (
+              {pinnedMessages.map((item) => (
                 <View key={item.id} className="timeline-item">
                   <View className="timeline-dot"></View>
                   <View className="timeline-content">

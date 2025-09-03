@@ -4,6 +4,18 @@
   padding-bottom: 80px;
   position: relative;
   overflow-x: hidden;
+  
+  /* 确保页面顶部有颜色 */
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 80px;
+    background: linear-gradient(135deg, #22c55e, #16a34a);
+    z-index: -1;
+  }
 }
 
 /* 顶部装饰背景 */
@@ -21,9 +33,10 @@
     top: 0;
     left: 0;
     right: 0;
-    height: 100px;
+    height: 120px;
     background: linear-gradient(135deg, #22c55e, #16a34a);
     clip-path: polygon(0 0, 100% 0, 100% 70%, 0 100%);
+    box-shadow: 0 4px 20px rgba(34, 197, 94, 0.3);
   }
 
   .floating-elements {
@@ -34,8 +47,9 @@
     .floating-dot {
       position: absolute;
       border-radius: 50%;
-      background: rgba(255, 255, 255, 0.2);
+      background: rgba(255, 255, 255, 0.3);
       animation: float 6s ease-in-out infinite;
+      box-shadow: 0 2px 8px rgba(255, 255, 255, 0.2);
 
       &.dot-1 {
         width: 20px;
@@ -75,7 +89,7 @@
 .content-wrapper {
   position: relative;
   z-index: 1;
-  padding: 120px 16px 0;
+  padding: 140px 16px 0;
 }
 
 /* 通用section样式 */
